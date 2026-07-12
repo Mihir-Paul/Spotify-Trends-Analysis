@@ -1,0 +1,22 @@
+# ============================================================
+# Spotify Trends Analysis — Python Dependencies
+# ============================================================
+# Install: pip install -r requirements.txt
+# ============================================================
+
+# ── Core data stack ──
+numpy>=1.24.0
+pandas>=2.0.0
+
+# ── Visualization ──
+matplotlib>=3.7.0
+seaborn>=0.12.0
+
+# ── Jupyter notebook ──
+ipython>=8.0.0
+jupyter>=1.0.0
+notebook>=7.0.0
+ipykernel>=6.0.0
+
+# ── Utilities ──
+scipy>=1.10.0
