@@ -244,32 +244,7 @@ Energy and loudness are positively correlated; acousticness negatively correlate
 
 ---
 
-## Technologies Used
 
-| Technology | Purpose |
-|------------|---------|
-| Python 3.9+ | Core programming language |
-| Pandas 2.0+ | Data manipulation and analysis |
-| NumPy 1.24+ | Numerical computations |
-| Matplotlib 3.7+ | Static plotting foundation |
-| Seaborn 0.12+ | Statistical data visualization |
-| Jupyter Notebook | Interactive documentation |
-| Argparse | CLI interface |
-| Logging | Production monitoring |
-
----
-
-## Future Scope
-
-- **Predictive Modeling:** Build regression models to predict popularity from audio features
-- **Playlist Clustering:** Use unsupervised learning to group songs into playlist archetypes
-- **NLP on Lyrics:** Incorporate lyric sentiment analysis for deeper insights
-- **Real-time Pipeline:** Connect to Spotify API for live data ingestion
-- **A/B Testing Framework:** Test how audio feature changes affect streaming performance
-- **Deep Learning:** Use neural networks to generate optimal-popularity song characteristics
-- **Dashboard:** Build an interactive dashboard with Plotly/Dash or Streamlit
-
----
 
 ## Screenshots
 
@@ -280,39 +255,6 @@ Energy and loudness are positively correlated; acousticness negatively correlate
 | ![Popularity Distribution](images/popularity_distribution.png) | ![Correlation Heatmap](images/correlation_heatmap.png) |
 | ![Top Artists](images/top_artists.png) | ![Genre Distribution](images/genre_distribution.png) |
 | ![Danceability vs Popularity](images/danceability_vs_popularity.png) | ![Audio Feature Boxplot](images/audio_feature_boxplot.png) |
-
----
-
-## Git Commands
-
-```bash
-# Initialize repository
-git init
-git add .
-git commit -m "Initial commit: project structure and dataset"
-
-# After analysis pipeline
-git add src/ images/
-git commit -m "Add analysis pipeline and visualizations"
-
-# After notebook
-git add notebooks/exploration.ipynb
-git commit -m "Add comprehensive EDA notebook with insights"
-```
-
----
-
-## License
-
-This project is licensed under the MIT License — see the [LICENSE](LICENSE) file for details.
-
----
-
-## Author
-
-**Data Analytics Team**
-
-*Built as a portfolio project demonstrating professional data analysis, software engineering, and Python development skills.*
 
 ---
 
