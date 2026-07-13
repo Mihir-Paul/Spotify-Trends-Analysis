@@ -59,51 +59,6 @@ The dataset contains **1,000 Spotify tracks** with **16 attributes**:
 
 ---
 
-## Project Structure
-
-```
-Spotify-Trends-Analysis/
-│
-├── data/
-│   └── spotify.csv                     # Dataset (1000 rows, 16 columns)
-│
-├── notebooks/
-│   └── exploration.ipynb               # Complete EDA with markdown explanations
-│
-├── src/
-│   ├── __init__.py                     # Package initializer
-│   ├── config.py                       # Centralized configuration
-│   ├── utils.py                        # Utility functions & decorators
-│   ├── cleaning.py                     # Data cleaning pipeline
-│   ├── analysis.py                     # EDA & statistical analysis
-│   ├── visualization.py                # Professional plotting module
-│   └── main.py                         # CLI entry point
-│
-├── scripts/
-│   ├── generate_data.py                # Dataset generation script
-│   └── generate_notebook.py            # Notebook builder
-│
-├── images/                             # Generated visualizations (300 DPI)
-│   ├── popularity_distribution.png
-│   ├── top_artists.png
-│   ├── genre_distribution.png
-│   ├── most_popular_songs.png
-│   ├── danceability_vs_popularity.png
-│   ├── energy_vs_popularity.png
-│   ├── tempo_distribution.png
-│   ├── duration_distribution.png
-│   ├── audio_feature_boxplot.png
-│   ├── correlation_heatmap.png
-│   ├── average_popularity_by_genre.png
-│   ├── genre_pie.png
-│   └── popularity_by_year.png
-│
-├── requirements.txt                    # Python dependencies
-├── .gitignore                          # Git ignore rules
-└── README.md                           # Project documentation
-```
-
----
 
 ## Installation
 
