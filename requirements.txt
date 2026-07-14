@@ -20,3 +20,6 @@ ipykernel>=6.0.0
 
 # ── Utilities ──
 scipy>=1.10.0
+
+# ── Kaggle dataset loading ──
+kagglehub[pandas-datasets]>=0.3.0

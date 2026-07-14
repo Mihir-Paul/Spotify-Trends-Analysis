@@ -20,7 +20,12 @@ from typing import Any, Callable, Dict, List, Optional
 
 import pandas as pd
 
-from src.config import setup_logging
+from src.config import (
+    KAGGLE_COLUMN_MAP,
+    KAGGLE_DATASET_FILENAME,
+    KAGGLE_DATASET_SLUG,
+    setup_logging,
+)
 
 logger = setup_logging(__name__)
 
@@ -147,3 +152,60 @@ def dataframe_summary(df: pd.DataFrame) -> Dict[str, Any]:
         "total_cells": df.size,
         "memory_usage_mb": round(df.memory_usage(deep=True).sum() / 1_024**2, 2),
     }
+
+
+# ──────────────────────────────────────────────
+# Kaggle dataset loader
+# ──────────────────────────────────────────────
+@time_it
+def load_from_kaggle() -> pd.DataFrame:
+    """Load the Spotify tracks dataset directly from Kaggle.
+
+    Downloads and caches the latest version of the dataset from:
+    https://kaggle.com/datasets/maharshipandya/-spotify-tracks-dataset
+
+    The returned DataFrame has columns renamed to match the project's
+    conventions (e.g., 'artists' -> 'artist_name', 'track_genre' -> 'genre').
+
+    Returns:
+        DataFrame containing the full Kaggle dataset.
+
+    Raises:
+        ImportError: If kagglehub is not installed.
+    """
+    try:
+        import kagglehub
+        from kagglehub import KaggleDatasetAdapter
+    except ImportError:
+        raise ImportError(
+            "kagglehub is required to load datasets from Kaggle. "
+            "Install it with: pip install kagglehub[pandas-datasets]"
+        )
+
+    logger.info("Downloading dataset from Kaggle: %s", KAGGLE_DATASET_SLUG)
+    df = kagglehub.load_dataset(
+        KaggleDatasetAdapter.PANDAS,
+        KAGGLE_DATASET_SLUG,
+        KAGGLE_DATASET_FILENAME,
+    )
+
+    # Drop unnamed index column if present
+    unnamed_cols = [c for c in df.columns if c.startswith("Unnamed")]
+    if unnamed_cols:
+        df = df.drop(columns=unnamed_cols)
+        logger.info("Dropped unnamed index columns: %s", unnamed_cols)
+
+    # Rename columns to match project conventions
+    existing_renames = {
+        k: v for k, v in KAGGLE_COLUMN_MAP.items() if k in df.columns
+    }
+    if existing_renames:
+        df = df.rename(columns=existing_renames)
+        logger.info("Renamed Kaggle columns: %s", existing_renames)
+
+    logger.info(
+        "Loaded Kaggle dataset — shape: %s, columns: %s",
+        df.shape,
+        list(df.columns),
+    )
+    return df

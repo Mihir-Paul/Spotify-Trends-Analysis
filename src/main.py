@@ -27,7 +27,7 @@ from src.config import (
     IMAGES_DIR,
     setup_logging,
 )
-from src.utils import dataframe_summary, time_it, validate_columns
+from src.utils import dataframe_summary, load_from_kaggle, time_it, validate_columns
 from src.visualization import Visualizer
 
 logger = setup_logging(__name__)
@@ -70,6 +70,11 @@ def parse_args(argv: list = None) -> argparse.Namespace:
         "--skip-visualization",
         action="store_true",
         help="Skip the visualization step",
+    )
+    parser.add_argument(
+        "--use-kaggle",
+        action="store_true",
+        help="Load the latest dataset directly from Kaggle instead of local CSV",
     )
     parser.add_argument(
         "--version",
@@ -139,7 +144,10 @@ def run_pipeline(args: argparse.Namespace) -> None:
     logger.info("=" * 60)
     logger.info("STEP 1: Loading dataset")
     logger.info("=" * 60)
-    df = load_data(input_path)
+    if args.use_kaggle:
+        df = load_from_kaggle()
+    else:
+        df = load_data(input_path)
     validate_columns(df)
 
     # ── Step 2: Inspect ─────────────────────

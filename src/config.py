@@ -120,8 +120,22 @@ POPULARITY_THRESHOLD: int = 70  # Songs above this are "high popularity"
 LOW_POPULARITY_THRESHOLD: int = 30
 
 # ──────────────────────────────────────────────
+# Kaggle dataset configuration
+# ──────────────────────────────────────────────
+KAGGLE_DATASET_SLUG: str = "maharshipandya/-spotify-tracks-dataset"
+KAGGLE_DATASET_FILENAME: str = "dataset.csv"
+
+# ──────────────────────────────────────────────
 # Rename mapping
 # ──────────────────────────────────────────────
 COLUMN_RENAME_MAP: Dict[str, str] = {
     "duration_ms": DURATION_MINUTES_COL,
+}
+
+# ──────────────────────────────────────────────
+# Kaggle column mapping (Kaggle -> Project)
+# ──────────────────────────────────────────────
+KAGGLE_COLUMN_MAP: Dict[str, str] = {
+    "artists": "artist_name",
+    "track_genre": "genre",
 }
